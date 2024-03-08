@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import Camera from "./src/components/Camera";
+import Navigator from "./src/Config/Navigation";
 
 export default function App() {
   const [isCamera, setIsCamera] = useState(false);
@@ -18,36 +18,7 @@ export default function App() {
   }, [list]);
   console.log(isCamera);
   return (
-    <ScrollView >
-      <View style={styles.container}>
-      {isCamera ? (
-        <Camera
-          isCamera={isCamera}
-          setIsCamera={setIsCamera}
-          list={list}
-          setList={setList}
-        />
-      ) : (
-        <>
-          <TouchableOpacity
-            onPress={() => setIsCamera(true)}
-            style={styles.cameraBtn}
-          >
-            <Text style={styles.cameraBtn}>Open Camera</Text>
-          </TouchableOpacity>
-          <View style={{display:"flex", justifyContent:'center', alignItems:"center"}}>
-            {list.map((item) => (
-              <View style={{ width: 300,borderWidth:2 , borderColor:"black", display:'flex', alignItems:"center", marginTop:10 }}>
-                <Image source={{ uri: item.image }} width={200} height={200} />
-                <Text style={{fontSize:30}}>{item.text}</Text>
-              </View>
-            ))}
-          </View>
-        </>
-      )}
-      </View>
-      <StatusBar style="auto" />
-    </ScrollView>
+   <Navigator/>
   );
 }
 
